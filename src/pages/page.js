@@ -47,6 +47,7 @@ const HomePage = () => {
   };
 
   const handleEdit = async (_id) => {
+    
     setFormData({id:_id.id,name:_id.name, phoneNumber:_id.phoneNumber, email: _id.email, hobbies:_id.hobbies});
     setIsModalOpen(true);
   }
