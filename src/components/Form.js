@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import Modal from "./Modal"
+import {fetchData} from "../utils/api"
 
-const Form = ({ initialData = {}, onSubmit,onClose}) => {
+const Form = ({ initialData={}, onSubmit,onClose}) => {
   const [formData, setFormData] = useState({name:"", phoneNumber:"",email:"",hobbies:"" });
-
+  const [modelopen,setModelopen]=useState(false)
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async(event) => {
-    event.preventDefault();
+    // event.preventDefault();
     setFormData({name: formData.name, phoneNumber: formData.phoneNumber, email: formData.email, hobbies:formData.hobbies});
     const response = await fetch("/api/add", {
         method: "POST",
@@ -18,14 +19,18 @@ const Form = ({ initialData = {}, onSubmit,onClose}) => {
         },
         body: JSON.stringify(formData),
       });
-    onClose(); // Close the modal after submission
+      setModelopen(false);
+      await fetchData();
+    // onClose(); // Close the modal after submission
   };
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
+    
+    <form onSubmit={handleSubmit} id="addrowform">
       <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="name" >
           Name
         </label>
         <input
@@ -34,11 +39,10 @@ const Form = ({ initialData = {}, onSubmit,onClose}) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
+          />
       </div>
       <div className="mb-4">
-        <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="phoneNumber" >
           Phone Number
         </label>
         <input
@@ -47,11 +51,10 @@ const Form = ({ initialData = {}, onSubmit,onClose}) => {
           name="phoneNumber"
           value={formData.phoneNumber}
           onChange={handleChange}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
+          />
       </div>
       <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" >
           Email
         </label>
         <input
@@ -59,12 +62,11 @@ const Form = ({ initialData = {}, onSubmit,onClose}) => {
           id="email"
           name="email"
           value={formData.email}
-          onChange={handleChange}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          onChange={handleChange} 
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="hobbies" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="hobbies" >
           Hobbies
         </label>
         <textarea
@@ -72,14 +74,14 @@ const Form = ({ initialData = {}, onSubmit,onClose}) => {
           name="hobbies"
           value={formData.hobbies}
           onChange={handleChange}
-          className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
+            />
       </div>
       <button
-        type="submit" >
+        id="createbtn" type="submit" >
         {initialData._id ? 'Update' : 'Create'}
       </button>
     </form>
+    </>
   );
 };
 

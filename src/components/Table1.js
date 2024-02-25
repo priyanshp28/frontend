@@ -1,6 +1,6 @@
 import React from "react";
 
-const Table = ({data, onDelete, onEdit,onSelect}) => {
+const Table = ({data, onDelete, onEdit ,onSelect}) => {
   return (
     <>
       <table id="students">

@@ -66,3 +66,41 @@
   background-color: #4CAF50;
   color: white;
 }
+
+#sendbutton {
+  margin-left: 650px;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(104, 160, 104);
+    color: #ddd;
+}
+
+#addrowform{
+    margin-left: 300px;
+    margin-right:300px;
+    background-color: #b3efb5;
+    padding: 100px 50px;
+    height:100px;
+    position: relative;
+}
+
+
+#newrow{
+  background-color: darkgreen;
+  margin-left: 650px;
+  padding: 10px;
+}
+
+#closebtn{
+  
+  margin-left: 500px;
+  margin-right:100px;
+}
+
+#createbtn{
+  background-color: darkgreen;
+  padding: 5px;
+  margin-left: 70px;
+}
+

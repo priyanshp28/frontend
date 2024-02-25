@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from '../pages/page';
+import HomePage from '../pages/Page';
 
 const Table = ({ data, onDelete, OnEdit , onSelect }) => {
     return (
